@@ -42,7 +42,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
 	logger.info("Initializing Connection Pool!");
 
 	final Context ctx = new InitialContext();
-	ds = (DataSource) ctx.lookup("jdbc/pocgeralDS");
+	ds = (DataSource) ctx.lookup("jdbc/tenancygeralDS");
 
 	/*
 	 * cpds = new ComboPooledDataSource("Example"); cpds.setDriverClass("oracle.jdbc.driver.OracleDriver");

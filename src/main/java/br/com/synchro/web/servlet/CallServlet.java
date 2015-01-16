@@ -33,7 +33,7 @@ public class CallServlet extends HttpServlet {
 
 	try {
 	    final Context ctx = new InitialContext();
-	    final DataSource sd = (DataSource) ctx.lookup("jdbc/pocgeralDS");
+	    final DataSource sd = (DataSource) ctx.lookup("jdbc/tenancygeralDS");
 	    conn = sd.getConnection();
 
 	    final String selectSQL = "SELECT id, nome FROM usuario";
