@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.synchro.domain.Usuario;
-import br.com.synchro.util.HibernateUtil;
+import br.com.synchro.hibernate.util.HibernateUtil;
 
 /**
  * @author cvs

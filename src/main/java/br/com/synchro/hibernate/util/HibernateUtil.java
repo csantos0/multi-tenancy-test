@@ -1,4 +1,4 @@
-package br.com.synchro.util;
+package br.com.synchro.hibernate.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

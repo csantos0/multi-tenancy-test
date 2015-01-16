@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.synchro.util;
+package br.com.synchro.hibernate.tenancy;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;

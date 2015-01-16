@@ -17,8 +17,8 @@ import org.hibernate.Transaction;
 
 import br.com.synchro.domain.ModeloDof;
 import br.com.synchro.domain.Usuario;
-import br.com.synchro.util.HibernateUtil;
-import br.com.synchro.util.SchemaResolver;
+import br.com.synchro.hibernate.tenancy.SchemaResolver;
+import br.com.synchro.hibernate.util.HibernateUtil;
 
 /**
  * @author cvs
@@ -33,7 +33,6 @@ public class MultiTenancyServlet extends HttpServlet {
     @Override
     public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 	final PrintWriter out = response.getWriter();
-
 	response.setContentType("text/html");
 
 	try {
