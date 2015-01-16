@@ -5,6 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * @author cvs
+ * @create Jan 16, 2015
+ */
 public class HibernateUtil {
 
     private static SessionFactory factory;
@@ -16,6 +20,9 @@ public class HibernateUtil {
 	factory = configuration.buildSessionFactory(builder.build());
     }
 
+    /**
+     * @return sessao
+     */
     public static Session getSession() {
 	return factory.openSession();
     }

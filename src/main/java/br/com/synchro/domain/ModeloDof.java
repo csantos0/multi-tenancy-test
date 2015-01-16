@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author $author
- * @version $revision
- * @create $date
+ * 
+ * @author cvs
+ * @create Jan 16, 2015
  */
 @Entity
 @Table(name = "COR_MODELO_DOF")

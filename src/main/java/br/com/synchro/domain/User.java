@@ -11,75 +11,109 @@ import javax.persistence.Table;
 
 /**
  * 
- * User.java
- * Criado em Sep 24, 2014
- * @author Ciro S. Santos
- * @version 1.0
+ * @author cvs
+ * @create Jan 16, 2015
  */
 @Entity
 @Table(name = "tb_user")
 @SuppressWarnings("serial")
-public class User implements Serializable{
+public class User implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "surname")
-	private String surname;
-	
-	@Column(name = "username")
-	private String username;
-	
-	@Column(name = "password")
-	private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(name = "name")
+    private String name;
 
-	public String getSurname() {
-		return surname;
-	}
-	
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    @Column(name = "surname")
+    private String surname;
 
-	public String getUsername() {
-		return username;
-	}
+    @Column(name = "username")
+    private String username;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @Column(name = "password")
+    private String password;
 
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+	return id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+	return name;
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname
-				+ ", username=" + username + ", password=" + password + "]";
-	}
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+	return password;
+    }
+
+    /**
+     * @return the surname
+     */
+    public String getSurname() {
+	return surname;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+	return username;
+    }
+
+    /**
+     * @param pId
+     *            the id to set
+     */
+    public void setId(final Integer pId) {
+	id = pId;
+    }
+
+    /**
+     * @param pName
+     *            the name to set
+     */
+    public void setName(final String pName) {
+	name = pName;
+    }
+
+    /**
+     * @param pPassword
+     *            the password to set
+     */
+    public void setPassword(final String pPassword) {
+	password = pPassword;
+    }
+
+    /**
+     * @param pSurname
+     *            the surname to set
+     */
+    public void setSurname(final String pSurname) {
+	surname = pSurname;
+    }
+
+    /**
+     * @param pUsername
+     *            the username to set
+     */
+    public void setUsername(final String pUsername) {
+	username = pUsername;
+    }
+
+    @Override
+    public String toString() {
+	return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password
+		+ "]";
+    }
 }

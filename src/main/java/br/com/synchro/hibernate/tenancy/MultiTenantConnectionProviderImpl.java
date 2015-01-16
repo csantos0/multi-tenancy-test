@@ -20,8 +20,14 @@ import org.hibernate.service.UnknownUnwrapTypeException;
 import org.hibernate.service.spi.Stoppable;
 
 /**
- * Simplistic implementation for illustration purposes showing a single connection pool used to serve multiple schemas using "connection altering".
- * Here we use the T-SQL specific USE command; Oracle users might use the ALTER SESSION SET SCHEMA command; etc.
+ * 
+ * @author cvs
+ * @create Jan 16, 2015
+ * 
+ * 
+ *         Simplistic implementation for illustration purposes showing a single connection pool used to serve multiple schemas using
+ *         "connection altering".
+ * 
  */
 public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionProvider, Stoppable {
 
@@ -31,7 +37,6 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
      * 
      */
     private static final long serialVersionUID = 1L;
-    // private ComboPooledDataSource cpds;
     private DataSource ds;
 
     /**
@@ -44,25 +49,12 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
 	final Context ctx = new InitialContext();
 	ds = (DataSource) ctx.lookup("jdbc/tenancygeralDS");
 
-	/*
-	 * cpds = new ComboPooledDataSource("Example"); cpds.setDriverClass("oracle.jdbc.driver.OracleDriver");
-	 * cpds.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe"); cpds.setUser("TENANCYGERAL"); cpds.setPassword("TENANCYGERAL");
-	 */
-
 	logger.info("Connection Pool initialised!");
     }
 
     @Override
     public Connection getAnyConnection() throws SQLException {
 	logger.info("Get Default Connection:::Number of connections (max: busy - idle): {} : {} - {}");
-	// new int[] { cpds.getMaxPoolSize(), cpds.getNumBusyConnectionsAllUsers(), cpds.getNumIdleConnectionsAllUsers() });
-
-	/*
-	 * if (cpds.getNumConnectionsAllUsers() == cpds.getMaxPoolSize()) { System.out.println("Maximum number of connections opened"); } if
-	 * (cpds.getNumConnectionsAllUsers() == cpds.getMaxPoolSize() && cpds.getNumIdleConnectionsAllUsers() == 0) {
-	 * System.out.println("Connection pool empty!"); }
-	 */
-
 	return ds.getConnection();
     }
 

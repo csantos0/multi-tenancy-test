@@ -10,17 +10,17 @@ package br.com.synchro.hibernate.util;
 public enum SchemaTenancy {
 
     /**
-     * 
+     * Schema Default usado pelo hibernate no momento que a aplicacao inicializa
      */
     TENANCYGERAL,
 
     /**
-     * 
+     * Schema de teste que representa um cliente 1
      */
     tenancy1,
 
     /**
-     * 
+     * Schema de teste que representa um cliente 2
      */
     tenancy2;
 }
