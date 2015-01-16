@@ -30,17 +30,22 @@
 			<version>4.3.8.Final</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.6.4</version> </dependency> -->
 
 		<dependency>
-			<groupId>br.com.mysql.weblogic</groupId>
-			<artifactId>mysql-connector-java-commercial-5.1.22-bin</artifactId>
-			<version>5.1.22</version>
-			<scope>provided</scope>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>br.com.mysql.weblogic</groupId> <artifactId>mysql-connector-java-commercial-5.1.22-bin</artifactId> 
+			<version>5.1.22</version> <scope>provided</scope> </dependency> -->
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
 		</dependency>
 
 		<dependency>

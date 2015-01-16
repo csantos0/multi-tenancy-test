@@ -6,11 +6,18 @@
 <hibernate-configuration>
 	<session-factory>
 	
-		<!-- Database connection settings -->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.datasource">jdbc/mysqlDs</property>		
-		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- Hibernate seleciona o dialeto automaticamente de acordo com a conexao -->
+		<!--<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>-->
+		
+		<!-- Com o multi tenancy nao e necessario setar o datasource, pois vai ser carregado pela implementacao do MultiTenantConnectionProviderImpl-->
+		<!--<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>-->
+		<!--<property name="hibernate.connection.datasource">jdbc/pocgeralDS</property>-->	
+	
+		<!-- Database connection settings -->		
+		<property name="hibernate.current_session_context_class">thread</property>		
+		<property name="hibernate.multiTenancy">SCHEMA</property>
+	    <property name="hibernate.tenant_identifier_resolver">br.com.synchro.util.SchemaResolver</property>
+		<property name="hibernate.multi_tenant_connection_provider">br.com.synchro.util.MultiTenantConnectionProviderImpl</property> 
 		
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
@@ -18,6 +25,8 @@
 		<property name="use_sql_comments">false</property>
 
 		<mapping class="br.com.synchro.domain.User" />
-
+		<mapping class="br.com.synchro.domain.Usuario" />		
+		<mapping class="br.com.synchro.domain.ModeloDof"/>
+			
 	</session-factory>
 </hibernate-configuration>

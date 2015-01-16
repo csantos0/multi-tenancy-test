@@ -7,17 +7,17 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-	private static SessionFactory factory;
+    private static SessionFactory factory;
 
-	static {
-		Configuration configuration = new Configuration().configure();
-		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-				.applySettings(configuration.getProperties());
-		factory = configuration.buildSessionFactory(builder.build());
-	}
+    static {
+	final Configuration configuration = new Configuration().configure();
+	final StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration
+		.getProperties());
+	factory = configuration.buildSessionFactory(builder.build());
+    }
 
-	public static Session getSession() {
-		return factory.openSession();
-	}
+    public static Session getSession() {
+	return factory.openSession();
+    }
 
 }
