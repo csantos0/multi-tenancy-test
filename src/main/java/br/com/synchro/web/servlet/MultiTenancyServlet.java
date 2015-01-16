@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.synchro.servlet;
+package br.com.synchro.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,9 @@ import org.hibernate.Transaction;
 
 import br.com.synchro.domain.ModeloDof;
 import br.com.synchro.domain.Usuario;
-import br.com.synchro.hibernate.tenancy.SchemaResolver;
 import br.com.synchro.hibernate.util.HibernateUtil;
+import br.com.synchro.hibernate.util.SchemaTenancy;
+import br.com.synchro.hibernate.util.TenantThread;
 
 /**
  * @author cvs
@@ -46,13 +47,13 @@ public class MultiTenancyServlet extends HttpServlet {
 
 	    logger.info("Multi Tenancy using tenancy1 schema");
 	    out.println("Multi Tenancy using tenancy1 schema");
-	    showTenancy(out, "tenancy1");
+	    showTenancy(out, SchemaTenancy.tenancy1.name());
 
 	    out.println("</br>");
 
 	    logger.info("Multi Tenancy using tenancy2 schema");
 	    out.println("Multi Tenancy using tenancy2 schema");
-	    showTenancy(out, "tenancy2");
+	    showTenancy(out, SchemaTenancy.tenancy2.name());
 
 	    logger.info("End hibernate servlet...");
 	} catch (final Exception e) {
@@ -63,7 +64,7 @@ public class MultiTenancyServlet extends HttpServlet {
 
     @SuppressWarnings("unchecked")
     private void showTenancy(final PrintWriter out, final String tenancy) {
-	SchemaResolver.begin(tenancy);
+	TenantThread.begin(tenancy);
 
 	final Session session = HibernateUtil.getSession();
 	final Transaction tx = session.beginTransaction();
@@ -74,7 +75,7 @@ public class MultiTenancyServlet extends HttpServlet {
 	for (final ModeloDof modeloDof : list) {
 	    out.println("<h3>" + modeloDof.getMdofCodigo() + " - " + modeloDof.getTitulo() + "</h3></br>");
 	}
-	SchemaResolver.end();
+	TenantThread.end();
     }
 
     /**

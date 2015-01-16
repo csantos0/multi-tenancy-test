@@ -1,4 +1,4 @@
-package br.com.synchro.servlet;
+package br.com.synchro.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
