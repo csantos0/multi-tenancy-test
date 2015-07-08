@@ -1,10 +1,8 @@
-/**
- * 
- */
 package br.com.synchro.hibernate.tenancy;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
 import javax.naming.Context;
@@ -47,14 +45,15 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
 	logger.info("Initializing Connection Pool!");
 
 	final Context ctx = new InitialContext();
-	ds = (DataSource) ctx.lookup("jdbc/tenancygeralDS");
+	ds = (DataSource) ctx.lookup("java:comp/env/jdbc/tenancygeralDS");
 
 	logger.info("Connection Pool initialised!");
     }
 
     @Override
     public Connection getAnyConnection() throws SQLException {
-	logger.info("Get Default Connection:::Number of connections (max: busy - idle): {} : {} - {}");
+	final DatabaseMetaData metaData = ds.getConnection().getMetaData();
+	logger.info("Get Any Connection:::" + metaData.getURL() + " - User: " + metaData.getUserName());
 	return ds.getConnection();
     }
 
@@ -79,6 +78,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
 
     @Override
     public void releaseAnyConnection(final Connection connection) throws SQLException {
+	// connection.createStatement().execute("ALTER SESSION SET CURRENT_SCHEMA= " + tenantIdentifier);
 	connection.close();
     }
 

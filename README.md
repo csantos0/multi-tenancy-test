@@ -1,2 +1,4 @@
 # multi-tenancy-test
-multi-tenancy-test
+
+Hibernate 4, JSF 2
+

@@ -14,8 +14,8 @@ import javax.servlet.ServletResponse;
 
 import org.apache.log4j.Logger;
 
-import br.com.synchro.hibernate.util.SchemaTenancy;
-import br.com.synchro.hibernate.util.TenantThread;
+import br.com.synchro.hibernate.util.TenantSchema;
+import br.com.synchro.hibernate.util.TenantResolver;
 
 /**
  * @author cvs
@@ -31,7 +31,7 @@ public class TenancySelectorFilter implements Filter {
      */
     @Override
     public void destroy() {
-	TenantThread.end();
+	TenantResolver.end();
 	logger.info("** TenancySelectorFilter finalized **");
     }
 
@@ -42,8 +42,9 @@ public class TenancySelectorFilter implements Filter {
     @Override
     public void doFilter(final ServletRequest pRequest, final ServletResponse pResponse, final FilterChain pChain)
 	    throws IOException, ServletException {
-	TenantThread.begin(SchemaTenancy.tenancy2.name());
+	TenantResolver.begin(TenantSchema.tenancy2.name());
 	pChain.doFilter(pRequest, pResponse);
+	TenantResolver.end();
     }
 
     /*

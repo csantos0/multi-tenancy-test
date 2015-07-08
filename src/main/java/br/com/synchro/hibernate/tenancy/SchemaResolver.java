@@ -9,8 +9,8 @@ package br.com.synchro.hibernate.tenancy;
  */
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 
-import br.com.synchro.hibernate.util.SchemaTenancy;
-import br.com.synchro.hibernate.util.TenantThread;
+import br.com.synchro.hibernate.util.TenantResolver;
+import br.com.synchro.jsf.FacesUtil;
 
 /**
  * @author cvs
@@ -20,16 +20,11 @@ public class SchemaResolver implements CurrentTenantIdentifierResolver {
 
     @Override
     public String resolveCurrentTenantIdentifier() {
-	final String var = TenantThread.get(Thread.currentThread().getId());
-	if (var == null) {
-	    return SchemaTenancy.TENANCYGERAL.name();
-	}
-	return var;
+	return TenantResolver.get(FacesUtil.getSessionId());
     }
 
     @Override
     public boolean validateExistingCurrentSessions() {
-
 	return false;
     }
 }

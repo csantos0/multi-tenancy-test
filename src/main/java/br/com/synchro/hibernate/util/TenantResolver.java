@@ -6,37 +6,42 @@ package br.com.synchro.hibernate.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.synchro.jsf.FacesUtil;
+
 /**
  * @author cvs
  * @create Jan 16, 2015
  */
-public class TenantThread {
+public class TenantResolver {
 
-    private static Map<Long, String> map;
+    private static Map<String, String> map;
 
     /**
      * @param tenant
      */
     public static void begin(final String tenant) {
 	if (map == null) {
-	    map = new HashMap<Long, String>();
+	    map = new HashMap<String, String>();
 	}
-	map.put(Thread.currentThread().getId(), tenant);
+	map.put(FacesUtil.getSessionId(), tenant);
     }
 
     /**
      * 
      */
     public static void end() {
-	map.remove(Thread.currentThread().getId());
+	map = null;
     }
 
     /**
-     * @param threadId
+     * @param sessionId
      * @return current tenancy
      */
-    public static String get(final Long threadId) {
-	return map.get(threadId);
+    public static String get(final String sessionId) {
+	if (map == null) {
+	    return TenantSchema.TENANCYGERAL.name();
+	}
+	return map.get(sessionId);
     }
 
 }

@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,26 +16,26 @@ import javax.persistence.Table;
  * @create Jan 16, 2015
  */
 @Entity
-@Table(name = "tb_user")
+@Table(name = "USUARIO")
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "USR_ID")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "USR_NAME")
     private String name;
 
-    @Column(name = "surname")
-    private String surname;
-
-    @Column(name = "username")
+    @Column(name = "USR_USER")
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "USR_PASS")
     private String password;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USR_ORG_ID")
+    private Organization organization;
 
     /**
      * @return the id
@@ -51,17 +52,17 @@ public class User implements Serializable {
     }
 
     /**
+     * @return the organization
+     */
+    public Organization getOrganization() {
+	return organization;
+    }
+
+    /**
      * @return the password
      */
     public String getPassword() {
 	return password;
-    }
-
-    /**
-     * @return the surname
-     */
-    public String getSurname() {
-	return surname;
     }
 
     /**
@@ -88,19 +89,19 @@ public class User implements Serializable {
     }
 
     /**
+     * @param pOrganization
+     *            the organization to set
+     */
+    public void setOrganization(final Organization pOrganization) {
+	organization = pOrganization;
+    }
+
+    /**
      * @param pPassword
      *            the password to set
      */
     public void setPassword(final String pPassword) {
 	password = pPassword;
-    }
-
-    /**
-     * @param pSurname
-     *            the surname to set
-     */
-    public void setSurname(final String pSurname) {
-	surname = pSurname;
     }
 
     /**
@@ -113,7 +114,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-	return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password
-		+ "]";
+	return "User [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
     }
 }

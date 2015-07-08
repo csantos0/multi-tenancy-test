@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+<h:head>
+    <title>Multi Tenant POC</title>
+    <h:outputStylesheet library="css" name="table-style.css"  />
+</h:head>
+
+<h:body>
+    <h:form>
+        <p>Logged User: #{loginBean.user}</p>
+        <h:commandLink action="#{loginBean.logout}" value="Logout"></h:commandLink>
+        <br/>
+        <br/>
+        
+        <h:commandButton id="btnModelo" value="Call Modelos" action="#{modeloBean.listarModelos}">
+        	<f:ajax execute="btnModelo" render="dtOutput" />
+        </h:commandButton>
+        
+        <br/>
+        <br/>
+        
+        <h:dataTable id="dtOutput" value="#{modeloBean.listModelo}" var="modelo"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+ 
+			<h:column>				
+				<f:facet name="header">Code</f:facet>				
+				#{modelo.mdofCodigo}
+			</h:column>
+	
+			<h:column>
+				<f:facet name="header">Title</f:facet>
+				#{modelo.titulo}
+			</h:column>   			
+	
+		</h:dataTable>
+         
+    </h:form>
+</h:body>
+
+</html>
